@@ -1,0 +1,91 @@
+############################
+# Python / uv / virtualenv
+############################
+.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.ipynb_checkpoints/
+
+############################
+# Environment / secrets
+############################
+.env
+.env.*
+*.env
+
+############################
+# Data (never commit data)
+############################
+data/
+datasets/
+raw_data/
+processed_data/
+
+############################
+# Model artifacts
+############################
+artifacts/
+models/
+*.pkl
+*.joblib
+*.onnx
+*.pt
+*.bin
+
+############################
+# MLflow
+############################
+mlruns/
+mlflow.db
+
+############################
+# Logs
+############################
+logs/
+*.log
+
+############################
+# FastAPI / Uvicorn
+############################
+*.pid
+
+############################
+# Jupyter / EDA
+############################
+notebooks/.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+############################
+# OS / Editor
+############################
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+############################
+# Build / Docker / AWS
+############################
+dist/
+build/
+*.egg-info/
+.aws/
+terraform.tfstate*
+terraform.tfstate.d/
+
+############################
+# Testing / coverage
+############################
+.pytest_cache/
+.coverage
+htmlcov/
+
+############################
+# Temporary files
+############################
+tmp/
+temp/
+.cache/

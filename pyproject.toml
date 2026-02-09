@@ -1,0 +1,26 @@
+[project]
+name = "ml-aws"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "boto3>=1.42.44",
+    "fastapi>=0.128.5",
+    "mlflow>=3.9.0",
+    "numpy>=2.4.2",
+    "optuna>=4.7.0",
+    "pandas>=2.3.3",
+    "scikit-learn>=1.8.0",
+    "xgboost>=3.1.3",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.2.0",
+    "ipywidgets>=8.1.8",
+    "matplotlib>=3.10.8",
+    "nbformat>=5.10.4",
+    "plotly>=6.5.2",
+    "seaborn>=0.13.2",
+]
