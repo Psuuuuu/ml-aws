@@ -23,3 +23,14 @@ git config --global user.name "asdfaf"
 git config --global user.email "@gmail.com"
 
 git restore --staged .
+
+git add .
+git commit -m "create project structure"
+
+git remote -v
+
+git remote set-url origin git@github.com:Psuuuuu/ml-aws.git
+
+ssh -T git@github.com
+
+

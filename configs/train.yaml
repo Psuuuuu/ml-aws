@@ -1,0 +1,12 @@
+dataset:
+    raw_data_path: data/raw_data/raw_data.csv
+    raw_path: data/raw_data/
+    processed_path: data/processed_data/
+model:
+    type: xgboost
+    n_estimators: 50
+    max_depth: 3
+training:
+    test_size: 0.2
+    val_size: 0.1
+    random_state: 42
