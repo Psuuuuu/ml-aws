@@ -33,4 +33,4 @@ git remote set-url origin git@github.com:Psuuuuu/ml-aws.git
 
 ssh -T git@github.com
 
-
+git push

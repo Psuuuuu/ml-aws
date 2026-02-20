@@ -4,7 +4,7 @@ from pathlib import Path
 from sklearn.model_selection import train_test_split
 
 
-def load_csv(path: str) -> pd.DataFrame:
+def load_csv(path: Path | str) -> pd.DataFrame:
 
     try:
         return pd.read_csv(path).drop(columns=["id"])
