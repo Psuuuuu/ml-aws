@@ -1,5 +1,6 @@
 import pandas as pd
 from src.common.io import load_yaml, save_splits
+from src.data_pipeline.validate import run_validation
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 
@@ -33,6 +34,7 @@ def run_data_pipeline(path: Path | str, config_path: Path | str):
     config = load_yaml(config_path)
 
     df = load_csv(Path(config["dataset"]["raw_data_path"]))
+    run_validation(df)
 
     train_df, val_df, test_df = split_data(
         df=df,

@@ -26,6 +26,7 @@ ml-aws
 │   └── s3
 ├── notebooks
 │   └── exploration.ipynb
+├── project_dump.md
 ├── project_to_markdown.py
 ├── pyproject.toml
 ├── scripts
@@ -197,7 +198,19 @@ from pydantic import BaseModel, Field
 from typing import Literal, Annotated
 
 
-
+FEATURE_COLUMNS: list[str] = [
+    "age",
+    "gender",
+    "course",
+    "study_hours",
+    "class_attendance",
+    "internet_access",
+    "sleep_hours",
+    "sleep_quality",
+    "study_method",
+    "facility_rating",
+    "exam_difficulty",
+]
 
 TARGET_COLUMN = "exam_score"
 
@@ -339,6 +352,7 @@ class StudentFeatures(BaseModel):
 ```
 import pandas as pd
 from src.common.io import load_yaml, save_splits
+from validate import run_validation
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 
@@ -372,6 +386,7 @@ def run_data_pipeline(path: Path | str, config_path: Path | str):
     config = load_yaml(config_path)
 
     df = load_csv(Path(config["dataset"]["raw_data_path"]))
+    run_validation(df)
 
     train_df, val_df, test_df = split_data(
         df=df,
@@ -392,6 +407,37 @@ def run_data_pipeline(path: Path | str, config_path: Path | str):
 ## src/data_pipeline/validate.py
 
 ```
+import pandas as pd
+from src.common.schemas import FEATURE_COLUMNS, TARGET_COLUMN
+
+
+def validate_columns(df: pd.DataFrame) -> None:
+    expected_columns = set(FEATURE_COLUMNS + [TARGET_COLUMN])
+    actual_columns = set(df.columns)
+
+    missing = expected_columns - actual_columns
+    extra = actual_columns - expected_columns
+
+    if missing:
+        raise ValueError(f"Missing columns: {missing}")
+    if extra:
+        raise ValueError(f"Unexpected columns: {extra}")
+
+
+def validate_target_missing_values(df: pd.DataFrame) -> None:
+    if df[TARGET_COLUMN].isna().any():
+        raise ValueError("Target column contains missing vlaues.")
+
+
+def validate_target_variance(df: pd.DataFrame) -> None:
+    if df[TARGET_COLUMN].nunique() <= 1:
+        raise ValueError("Target column has no variance.")
+
+
+def run_validation(df: pd.DataFrame) -> None:
+    validate_columns(df)
+    validate_target_missing_values(df)
+    validate_target_variance(df)
 
 ```
 
