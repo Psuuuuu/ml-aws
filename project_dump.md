@@ -352,7 +352,7 @@ class StudentFeatures(BaseModel):
 ```
 import pandas as pd
 from src.common.io import load_yaml, save_splits
-from validate import run_validation
+from src.data_pipeline.validate import run_validation
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 
